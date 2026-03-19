@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     int index = zdjecia.indexOf(i);
-                    if(index==appleIndex && !clicked){
+                    if(index==appleIndex && !clicked && gra){
                         clicked = true;
                         if(trap){
                             points--;
@@ -70,20 +70,19 @@ public class MainActivity extends AppCompatActivity {
                 if (!gra){
                     gra = true;
                     points = 0;
+                    pointText.setText(String.valueOf(points));
                     gameTime = 10000;
                     countDownTimer = new CountDownTimer(10000,100) {
                         @Override
                         public void onFinish() {
-
+                            gra = false;
+                            time.setText("0.0");
                         }
 
                         @Override
                         public void onTick(long l) {
                             gameTime-=100;
                             time.setText(String.valueOf((double) gameTime / 1000));
-                            if(gameTime==0){
-                                gra = false;
-                            }
                             if(swapTicks != 0){
                                 swapTicks--;
                             } else{
